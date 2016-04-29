@@ -22,7 +22,24 @@ public class Node {
 		return neighbors;
 	}
 	
-	
+	public boolean contains(int node_id) {
+		if(this.id == node_id) return true;
+		
+		boolean flag = false;
+		for(Node n : neighbors) {
+			if(n.id == node_id) {
+				flag = true;
+				break;
+			}
+		}
+		return flag;
+	}
 
+	@Override
+	public String toString() {
+		return "Node [id=" + (id+1) + "]";
+	}
+
+	
 	
 }

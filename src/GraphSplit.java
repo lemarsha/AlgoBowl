@@ -70,5 +70,6 @@ public class GraphSplit {
 
 	public static void main(String[] args) {
 		GraphSplit gs = new GraphSplit("input.txt");
+		Greedy greedy = new Greedy(gs.getNodes());
 	}
 }
