@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
@@ -103,13 +105,27 @@ public class Greedy {
 			 } 
 		}
 		
-		//print common edges
-		System.out.println(common_edge_count(set1, set2));
-		
-		
-		//printing sets
-		System.out.println(set1);
-		System.out.println(set2);
+		//Printing output to file
+		try {
+			PrintWriter writer = new PrintWriter("output.txt");
+			
+			//print common edge count to output file
+			writer.print(common_edge_count(set1, set2) + "\n");
+			for(Node n : set1) {
+				writer.print((n.id+1) + " ");
+			}
+			writer.print("\n");
+			
+			for(Node n : set2) {
+				writer.print((n.id+1) + " ");
+			}
+			writer.print("\n");
+			
+			writer.close();
+		} catch (FileNotFoundException e) {
+			//Oops, don't go here mister code
+			e.printStackTrace();
+		}
 	}
 	
 }
