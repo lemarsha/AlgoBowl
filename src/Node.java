@@ -37,7 +37,7 @@ public class Node {
 
 	@Override
 	public String toString() {
-		return "Node [id=" + (id+1) + "]";
+		return ""+(id+1);
 	}
 
 	
