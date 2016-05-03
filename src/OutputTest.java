@@ -23,7 +23,7 @@ public class OutputTest {
 		//read the output file
 		Scanner in;
 		try {
-			FileReader reader = new FileReader("output1.txt");
+			FileReader reader = new FileReader("output.txt");
 			in = new Scanner(reader);
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getLocalizedMessage());
