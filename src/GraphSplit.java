@@ -178,6 +178,6 @@ public class GraphSplit {
 		final long colinsTime = System.currentTimeMillis();
 		Greedy greedy = new Greedy(gs.getNodes());
 		final long colendsTime = System.currentTimeMillis();
-		System.out.println("Stopping: time " + ((colendsTime - colinsTime)/1000));
+		System.out.println("\nStopping: time " + ((colendsTime - colinsTime)/1000));
 	}
 }
