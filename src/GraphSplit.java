@@ -170,7 +170,7 @@ public class GraphSplit {
 
 	public static void main(String[] args) {
 
-		GraphSplit gs = new GraphSplit("input_group17.txt");
+		GraphSplit gs = new GraphSplit("input_group10.txt");
 		System.out.println("Running");
 		
 		gs.algo2_do_werk();
