@@ -170,5 +170,7 @@ public class GraphSplit {
 	public static void main(String[] args) {
 		GraphSplit gs = new GraphSplit("input.txt");
 		gs.algo2_do_werk();
+		Greedy greedy = new Greedy(gs.getNodes());
+
 	}
 }

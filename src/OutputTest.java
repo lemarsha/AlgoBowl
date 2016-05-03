@@ -23,7 +23,7 @@ public class OutputTest {
 		//read the output file
 		Scanner in;
 		try {
-			FileReader reader = new FileReader("output.txt");
+			FileReader reader = new FileReader("output1.txt");
 			in = new Scanner(reader);
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getLocalizedMessage());
@@ -64,7 +64,6 @@ public class OutputTest {
 		
 		//assert that the amount of actual edges is equal to amount of stated edges
 		assertEquals(numActualEdges, numEdges);
-		
 		
 		in.close();
 	}
