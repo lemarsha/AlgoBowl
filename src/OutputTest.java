@@ -13,7 +13,7 @@ import org.junit.Test;
 
 public class OutputTest {
 	
-	GraphSplit gs = new GraphSplit("input.txt");
+	GraphSplit gs = new GraphSplit("input_group17.txt");
 	int numNodes = gs.getNumNodes();
 	ArrayList<Node> nodes = gs.getNodes();
 

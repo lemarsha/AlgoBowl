@@ -2,6 +2,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Timer;
 
 
 public class GraphSplit {
@@ -69,7 +70,12 @@ public class GraphSplit {
 	}
 
 	public static void main(String[] args) {
-		GraphSplit gs = new GraphSplit("input.txt");
+		
+		System.out.println("Running");
+		GraphSplit gs = new GraphSplit("input_group17.txt");
+		final long colinsTime = System.currentTimeMillis();
 		Greedy greedy = new Greedy(gs.getNodes());
+		final long colendsTime = System.currentTimeMillis();
+		System.out.println("Stopping: time " + ((colendsTime - colinsTime)/1000));
 	}
 }
