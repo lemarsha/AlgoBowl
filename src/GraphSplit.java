@@ -1,5 +1,6 @@
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.PriorityQueue;
@@ -119,21 +120,38 @@ public class GraphSplit {
 	}
 	
 	public void printStuff(Set<Node> leftNodes, Set<Node> rightNodes) {
-		int numActualEdges=0;
-		for (Node n: leftNodes) {
-			Set<Node> neighbors = n.getNeighbors();
-			for (Node n2: neighbors) {
-				if (rightNodes.contains(n2)) numActualEdges+=1;
+		try {
+			PrintWriter writer = new PrintWriter("output.txt");
+			
+			int numActualEdges=0;
+			for (Node n: leftNodes) {
+				Set<Node> neighbors = n.getNeighbors();
+				for (Node n2: neighbors) {
+					if (rightNodes.contains(n2)) {
+						numActualEdges+=1;
+					}
+				}
 			}
+			System.out.println(numActualEdges);
+			writer.println(numActualEdges);
+			for (Node n: leftNodes) {
+				System.out.print((n.getId()+1)+" ");
+				writer.print((n.getId()+1)+" ");
+			}
+			System.out.println();
+			writer.println();
+			for (Node n: rightNodes) {
+				System.out.print((n.getId()+1)+" ");
+				writer.print((n.getId()+1)+" ");
+			}
+			writer.close();
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		System.out.println("Num nodes: "+numNodes+" Num edges: "+numEdges);
-		System.out.println("Num Actual Edges: "+numActualEdges);
-		System.out.println("left size: "+leftNodes.size()+" right size: "+rightNodes.size());
-		System.out.print("left: ");
-		for (Node n: leftNodes) System.out.print((n.getId()+1)+" ");
-		System.out.println();
-		System.out.print("right: ");
-		for (Node n: rightNodes) System.out.print((n.getId()+1)+" ");
+		
+
 	}
 	
 	
@@ -150,7 +168,7 @@ public class GraphSplit {
 	}
 
 	public static void main(String[] args) {
-		GraphSplit gs = new GraphSplit("input_4.txt");
+		GraphSplit gs = new GraphSplit("input.txt");
 		gs.algo2_do_werk();
 	}
 }
