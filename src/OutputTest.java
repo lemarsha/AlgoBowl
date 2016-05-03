@@ -65,7 +65,6 @@ public class OutputTest {
 		//assert that the amount of actual edges is equal to amount of stated edges
 		assertEquals(numActualEdges, numEdges);
 		
-		
 		in.close();
 	}
 

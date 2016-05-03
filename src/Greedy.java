@@ -107,7 +107,7 @@ public class Greedy {
 		
 		//Printing output to file
 		try {
-			PrintWriter writer = new PrintWriter("output.txt");
+			PrintWriter writer = new PrintWriter("output1.txt");
 			
 			//print common edge count to output file
 			writer.print(common_edge_count(set1, set2) + "\n");
