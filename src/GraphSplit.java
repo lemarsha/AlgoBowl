@@ -12,7 +12,9 @@ import java.util.Set;
 public class GraphSplit {
 	
 	ArrayList<Node> nodes;
+	ArrayList<Node> nodez;
 	int numNodes, numEdges;
+	int greedy_edge = 0;
 	
 	public GraphSplit(String filename) {
 		setUp(filename);
@@ -37,6 +39,7 @@ public class GraphSplit {
 		
 		//initialize the array of nodes
 		nodes = initializeNodes(numNodes);
+		nodez = initializeNodes(numNodes);
 		
 		//create the graph
 		for (int i = 0; i<numEdges; i++) {
@@ -46,6 +49,8 @@ public class GraphSplit {
 			int n2 = Integer.parseInt(line_arr[1]);
 			nodes.get(n1-1).addNeighbor(nodes.get(n2-1));
 			nodes.get(n2-1).addNeighbor(nodes.get(n1-1));
+			nodez.get(n1-1).addNeighbor(nodez.get(n2-1));
+			nodez.get(n2-1).addNeighbor(nodez.get(n1-1));
 		}
 		
 		//close the scanner
@@ -121,36 +126,42 @@ public class GraphSplit {
 	}
 	
 	public void printStuff(Set<Node> leftNodes, Set<Node> rightNodes) {
-		try {
-			PrintWriter writer = new PrintWriter("output.txt");
-			
-			int numActualEdges=0;
-			for (Node n: leftNodes) {
-				Set<Node> neighbors = n.getNeighbors();
-				for (Node n2: neighbors) {
-					if (rightNodes.contains(n2)) {
-						numActualEdges+=1;
-					}
+		int numActualEdges=0;
+		for (Node n: leftNodes) {
+			Set<Node> neighbors = n.getNeighbors();
+			for (Node n2: neighbors) {
+				if (rightNodes.contains(n2)) {
+					numActualEdges+=1;
 				}
 			}
-			System.out.println(numActualEdges);
-			writer.println(numActualEdges);
-			for (Node n: leftNodes) {
-				System.out.print((n.getId()+1)+" ");
-				writer.print((n.getId()+1)+" ");
-			}
-			System.out.println();
-			writer.println();
-			for (Node n: rightNodes) {
-				System.out.print((n.getId()+1)+" ");
-				writer.print((n.getId()+1)+" ");
-			}
-			writer.close();
-			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
+//		System.out.println(numActualEdges);
+		
+		if(numActualEdges <= greedy_edge) {
+			try {
+				PrintWriter writer = new PrintWriter("output.txt");
+				
+				
+				
+				writer.println(numActualEdges);
+				for (Node n: leftNodes) {
+//					System.out.print((n.getId()+1)+" ");
+					writer.print((n.getId()+1)+" ");
+				}
+				System.out.println();
+				writer.println();
+				for (Node n: rightNodes) {
+//					System.out.print((n.getId()+1)+" ");
+					writer.print((n.getId()+1)+" ");
+				}
+				writer.close();
+				
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 		
 
 	}
@@ -158,6 +169,10 @@ public class GraphSplit {
 	
 	public ArrayList<Node> getNodes() {
 		return nodes;
+	}
+	
+	public ArrayList<Node> getNodez() {
+		return nodez;
 	}
 	
 	public int getNumNodes() {
@@ -170,14 +185,17 @@ public class GraphSplit {
 
 	public static void main(String[] args) {
 
-		GraphSplit gs = new GraphSplit("input_group17.txt");
+		GraphSplit gs = new GraphSplit("input_group10.txt");
 		System.out.println("Running");
-		
-		gs.algo2_do_werk();
-	
+
 		final long colinsTime = System.currentTimeMillis();
-		Greedy greedy = new Greedy(gs.getNodes());
+		Greedy greedy = new Greedy(gs.getNodez());
+		gs.greedy_edge = greedy.total;
+		gs.algo2_do_werk();
+		
+//		System.out.println("\nColton " + gs.greedy_edge);
 		final long colendsTime = System.currentTimeMillis();
 		System.out.println("\nStopping: time " + ((colendsTime - colinsTime)/1000));
+		
 	}
 }

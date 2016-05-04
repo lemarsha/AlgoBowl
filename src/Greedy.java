@@ -9,7 +9,7 @@ import java.util.Set;
 public class Greedy {
 	private Set<Node> set1 = new HashSet<Node>();
 	private Set<Node> set2 = new HashSet<Node>();
-	
+	public int total = 0;
 	private ArrayList<Node> nodes;
 	private int set_size;
 
@@ -38,7 +38,7 @@ public class Greedy {
 	}
 	
 	private int common_edge_count(Set<Node> set1, Set<Node> set2) {
-		int total = 0;
+		total = 0;
 		
 		for(Node n : set1) {
 			for(Node nn : n.neighbors) {
@@ -107,7 +107,7 @@ public class Greedy {
 		
 		//Printing output to file
 		try {
-			PrintWriter writer = new PrintWriter("output1.txt");
+			PrintWriter writer = new PrintWriter("output.txt");
 			
 			//print common edge count to output file
 			writer.print(common_edge_count(set1, set2) + "\n");
